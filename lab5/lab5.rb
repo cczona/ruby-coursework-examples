@@ -7,6 +7,8 @@ start = t.to_f
 puts "Content-Type: text-html"
 print "\r\n\r\n"
 
+require_relative 'cgi_helper'
+
 require "erb" # after CGI headers
 
 class Course
@@ -195,73 +197,10 @@ class String
 end
 
 
-html=<<HTML
-<html>
-<head>
-<title>Lab4 - Carina Zona</title>
-</head>
-<body>
+## TODO: output lab5_template.html.erb
+#require_relative '../lab5_template'
+#puts ERB.new(html).result
 
-  <table>
-
-    <thead>
-      <tr>
-        <th>Rank</th>
-        <th>username</th>
-        <th>password</th>
-        <th>uid</th>
-        <th>guid</th>
-        <th>GCOS field</th>
-        <th>directory</th>
-        <th>shell</th>
-        <th>first name</th>
-        <th>last name</th>
-      </tr>
-    </thead>
-
-    <tbody>
-    <% Course.new.students.each do | s |
-
-      if s.parsed_name[1][0].downcase < "l"
-        def s.last_name
-          parsed_name[1].ucwords
-        end
-        def s.first_name
-          parsed_name[0].ucwords
-        end
-      else
-        def s.last_name
-          parsed_name[1].altcase
-        end
-        def s.first_name
-          parsed_name[0].altcase
-        end
-      end
-
-    %>
-      <tr>
-        <td><%=s.rank%></td>
-        <td><%=s.user_name%></td>
-        <td><%=s.password%></td>
-        <td><%=s.uid%></td>
-        <td><%=s.guid%></td>
-        <td><%=s.gcos_field%></td>
-        <td><%=s.directory%></td>
-        <td><%=s.shell%></td>
-        <td><%=s.first_name%></td>
-        <td><%=s.last_name%></td>
-      </tr>
-    <% end %>
-    </tbody>
-
-  </table>
-
-</body>
-</html>
-HTML
-
-puts ERB.new(html).result
-puts
 
 # FINISH TIMING SCRIPT
 finish = Time.now 

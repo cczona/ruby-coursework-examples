@@ -13,7 +13,7 @@
 #   end
 # end
 
-require_relative "lab4"
+require_relative "../lab5"
 
 begin; require 'minitest/spec'; rescue LoadError => e ;puts e; end
 begin; require 'minitest/autorun'; rescue LoadError => e ;puts e; end
