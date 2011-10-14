@@ -215,7 +215,7 @@ describe Student do
     Student.students=0
     Student.students.must_equal 0
     this_many=0;
-    this_many=rand(10) until this_many > 2
+    this_many=rand(5) until this_many > 2
     (1..this_many).each do | i |
       Student.new(@this_course.passwd_lines_of_members.sample)
       Student.students.must_equal i
