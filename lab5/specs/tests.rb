@@ -152,7 +152,6 @@ describe Student do
     @this_student.raw_data.size.must_equal 8
   end
 
-  ## FIXME: CCSF size == 4
   it 'should store parsed raw data about the student' do
     @this_student.raw_data.must_be_kind_of Array
     @this_student.raw_data.size.must_equal 8
