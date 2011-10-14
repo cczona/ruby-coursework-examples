@@ -30,8 +30,8 @@ class Course
 
   def group
     production_path='/etc/group'
-    development_path=File.join(File.dirname(caller[0]), 'group-sample')
-    # puts development_path
+    development_path='/Users/cczona/Homework/ruby/lab5/group-sample'
+
     if is_production?
       f=File.readlines(production_path)
     else
@@ -42,11 +42,14 @@ class Course
   end
 
   def passwd
+    production_path='/etc/passwd'
+    development_path='/Users/cczona/Homework/ruby/lab5/passwd-sample'
+
     if @passwd.nil?
       if is_production?
-        @passwd=File.readlines( '/etc/passwd')
+        @passwd=File.readlines(production_path)
       else
-        @passwd=File.readlines('./passwd-sample')
+        @passwd=File.readlines(development_path)
       end
     end
     @passwd
