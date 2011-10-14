@@ -177,7 +177,7 @@ describe Student do
     @this_student.last_name.must_be_kind_of String
   end
 
-  it 'should format NAME FOR THE STUDENT AS SPECCED' do
+  it 'should format NAME FOR THE STUDENT AS SPECCED in Lab4' do
     skip
   end
 
