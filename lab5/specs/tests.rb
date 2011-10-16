@@ -31,6 +31,7 @@ begin
 #   require 'turn'
 # end # OPTIONAL: if "gem ansi" is available, will also colorize
 # # # #
+  gem 'minitest', '> 1.4.2' # load after require of stdlib minitest
 rescue LoadError => e
   puts e
 end
