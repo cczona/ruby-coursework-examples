@@ -100,7 +100,7 @@ class Student
     @raw_data
   end
 
-  def rank
+  def number
     @raw_data[0]
   end
 
@@ -156,7 +156,7 @@ class Student
     @raw_data[3]
   end
 
-  def guid
+  def gid
     @raw_data[4]
   end
 
@@ -164,11 +164,11 @@ class Student
     @raw_data[5]
   end
 
-  def directory
+  def home_directory
     @raw_data[6]
   end
 
-  def shell
+  def login_shell
     @raw_data[7]
   end
 

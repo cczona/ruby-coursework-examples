@@ -45,14 +45,14 @@ html=<<HTML
 
     %>
       <tr>
-        <td><%=s.rank%></td>
+        <td><%=s.number%></td>
         <td><%=s.user_name%></td>
         <td><%=s.password%></td>
         <td><%=s.uid%></td>
-        <td><%=s.guid%></td>
+        <td><%=s.gid%></td>
         <td><%=s.gcos_field%></td>
-        <td><%=s.directory%></td>
-        <td><%=s.shell%></td>
+        <td><%=s.home_directory%></td>
+        <td><%=s.login_shell%></td>
         <td><%=s.first_name%></td>
         <td><%=s.last_name%></td>
       </tr>

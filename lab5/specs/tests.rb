@@ -174,6 +174,8 @@ describe Student do
     @this_student.fields.each { |field| field.must_be_kind_of Symbol }
   end
 
+  it 'has a getter instance method corresponding to each of the fields' do
+    @this_student.fields.each { |field_name| @this_student.must_respond_to field_name }
   end
 
   #FIXME: should probably test for some minimal number of initialization arguments, such as an uid
@@ -188,9 +190,9 @@ describe Student do
     @this_student.raw_data.size.must_equal 8
   end
 
-  it 'should have a rank for the student' do
-    @this_student.must_respond_to :rank
-    @this_student.rank.must_be_kind_of Fixnum
+  it 'should have a ranking number for the student' do
+    @this_student.must_respond_to :number
+    @this_student.number.must_be_kind_of Fixnum
   end
 
   it 'should have a user_name for the student' do
@@ -222,9 +224,9 @@ describe Student do
     @this_student.uid.must_be_kind_of String
   end
 
-  it 'should have a guid for the student' do
-    @this_student.must_respond_to :guid
-    @this_student.guid.must_be_kind_of String
+  it 'should have a gid for the student' do
+    @this_student.must_respond_to :gid
+    @this_student.gid.must_be_kind_of String
   end
 
   it 'should have a gcos_field for the student' do
@@ -232,14 +234,14 @@ describe Student do
     @this_student.gcos_field.must_be_kind_of String
   end
 
-  it 'should have a directory for the student' do
-    @this_student.must_respond_to :directory
-    @this_student.directory.must_be_kind_of String
+  it 'should have a home directory for the student' do
+    @this_student.must_respond_to :home_directory
+    @this_student.home_directory.must_be_kind_of String
   end
 
-  it 'should have a shell for the student' do
-    @this_student.must_respond_to :shell
-    @this_student.shell.must_be_kind_of String
+  it 'should have a login shell for the student' do
+    @this_student.must_respond_to :login_shell
+    @this_student.login_shell.must_be_kind_of String
   end
 
   it 'should increment the class variable count for each instantiated student' do
