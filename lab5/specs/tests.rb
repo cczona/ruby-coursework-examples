@@ -163,6 +163,12 @@ describe Student do
     Student.class.must_be_kind_of Class
   end
 
+  it 'should have a field list of 10 symbols' do
+    Student.fields.must_be_kind_of Array
+    Student.fields.must_equal [:number, :user_name, :password, :uid, :gid, :gcos_field,:home_directory, :login_shell, :first_name,:last_name]
+    Student.fields.each { |field| field.must_be_kind_of Symbol }
+  end
+
   #FIXME: should probably test for some minimal number of initialization arguments, such as an uid
   it 'should be able to instantiate Student based on a passwd line' do
     @this_student.must_be_kind_of Student
