@@ -88,12 +88,12 @@ class Student
     @name_parts=nil
     @@count ||= 0
     @@count+=1
-    @@fields = [ :number, :user_name, :password, :uid, :gid, :gcos_field,:home_directory, :login_shell, :first_name,:last_name]
+    @fields = [ :number, :user_name, :password, :uid, :gid, :gcos_field,:home_directory, :login_shell, :first_name,:last_name]
     @raw_data=passwd_line.sub(/^(.+?)\n/, "\\1").split(':').unshift @@count # passwd's data, plus append ran
   end
 
-  def self.fields
-    @@fields
+  def fields
+    @fields
   end
 
   def raw_data

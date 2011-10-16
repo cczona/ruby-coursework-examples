@@ -163,10 +163,17 @@ describe Student do
     Student.class.must_be_kind_of Class
   end
 
-  it 'should have a field list of 10 symbols' do
-    Student.fields.must_be_kind_of Array
-    Student.fields.must_equal [:number, :user_name, :password, :uid, :gid, :gcos_field,:home_directory, :login_shell, :first_name,:last_name]
-    Student.fields.each { |field| field.must_be_kind_of Symbol }
+  it 'has an instance variable called fields' do
+    @this_student.instance_variables.must_include :@fields
+    # need to identify
+  end
+
+  it 'fields is an array of the 10 specified symbols' do
+    @this_student.fields.must_be_kind_of Array
+    @this_student.fields.must_equal [:number, :user_name, :password, :uid, :gid, :gcos_field,:home_directory, :login_shell, :first_name,:last_name]
+    @this_student.fields.each { |field| field.must_be_kind_of Symbol }
+  end
+
   end
 
   #FIXME: should probably test for some minimal number of initialization arguments, such as an uid
