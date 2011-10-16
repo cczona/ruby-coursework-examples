@@ -168,6 +168,10 @@ describe Student do
     # need to identify
   end
 
+  it 'defined the fields variable in lab5.cgi' do
+    skip
+  end
+
   it 'fields is an array of the 10 specified symbols' do
     @this_student.fields.must_be_kind_of Array
     @this_student.fields.must_equal [:number, :user_name, :password, :uid, :gid, :gcos_field,:home_directory, :login_shell, :first_name,:last_name]
