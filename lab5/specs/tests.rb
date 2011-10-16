@@ -7,7 +7,6 @@ begin
   require 'simplecov'
   SimpleCov.start
   SimpleCov.at_exit do
-  require 'minitest/spec'
     puts "Coverage done"
     SimpleCov.result.format!
   end
