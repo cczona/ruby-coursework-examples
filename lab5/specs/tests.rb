@@ -159,7 +159,7 @@ describe Student do
     @this_student=@this_course.students.sample
   end
 
-  it "should be a class" do
+  it 'is a class' do
     Student.class.must_be_kind_of Class
   end
 
