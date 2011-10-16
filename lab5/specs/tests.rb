@@ -2,39 +2,35 @@
 ### Optional: MiniTest options can be passed in as arguments to filename, e.g. $ ruby thisfile -- -v
 ### To see all MiniTest options, use $ ruby -r minitest/autorun -e '' -- --help
 
-require_relative "../lab5"
-
-begin; require 'minitest/spec'; rescue LoadError => e ;puts e; end
-begin; require 'minitest/autorun'; rescue LoadError => e ;puts e; end
-begin; require 'redgreen'; rescue LoadError => e ;puts e; end # must require redgreen AFTER purdytest
-
-# # # # Isolating gems that have a 'gem minitest' dependency because of a bug:
+#coverage must be before anything else!
+begin
+  require 'minitest/spec'
+  require 'minitest/autorun'
+# # # # Isolating gems that have a 'gem minitest' dependency because of a Ruby 1.9.1 bug:
 # # test for must_include fail under Ruby 1.9.1 when gem minitest is not present (i.e. CCSF Hills),
 # # but the same tests pass when gem minitest > 1.4.2 is present.
 # # Instead use 'obj.include?(something).must_equal true', which is passes under both conditions
-# begin; require 'purdytest'; rescue LoadError => e ;puts e; end
-# begin: require 'colorific'; rescue LoadError => e; puts e;  end
-# begin
-#   require 'minitest/reporters'
-#     MiniTest::Unit.runner = MiniTest::SuiteRunner.new
-#   if ENV['TM_PID']
-#     MiniTest::Unit.runner.reporters << MiniTest::Reporters::RubyMateReporter.new # sans ANSI color codes
-#   else
-#     MiniTest::Unit.runner.reporters << MiniTest::Reporters::ProgressReporter.new
-#     # MiniTest::Unit.runner.reporters << MiniTest::Reporters::SpecReporter.new # => Turn-like
-#   end
-# rescue LoadError => e
-#   puts e
-# end
+  require 'redgreen' # must require redgreen AFTER purdytest
+  require 'minitest/reporters'
+    MiniTest::Unit.runner = MiniTest::SuiteRunner.new
+    if ENV['TM_PID']
+      MiniTest::Unit.runner.reporters << MiniTest::Reporters::RubyMateReporter.new # sans ANSI color codes
+    else
+      MiniTest::Unit.runner.reporters << MiniTest::Reporters::ProgressReporter.new
+      # MiniTest::Unit.runner.reporters << MiniTest::Reporters::SpecReporter.new # => Turn-like
+  end
 # # # # Isolating turn for gem minitest issue and also because of second issue:
 # # see <https://github.com/TwP/turn/issues/58>
-# begin
 #   gem 'minitest'
 #   require 'turn'
-# rescue LoadError => e
-#   puts e
 # end # OPTIONAL: if "gem ansi" is available, will also colorize
 # # # #
+rescue LoadError => e
+  puts e
+end
+
+
+require_relative "../lab5"
 
 
 describe Object do
