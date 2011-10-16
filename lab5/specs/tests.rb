@@ -15,7 +15,7 @@ begin
 # # # # Isolating gems that have a 'gem minitest' dependency because of a Ruby 1.9.1 bug:
 # # test for must_include fail under Ruby 1.9.1 when gem minitest is not present (i.e. CCSF Hills),
 # # but the same tests pass when gem minitest > 1.4.2 is present.
-# # Instead use 'obj.include?(something).must_equal true', which is passes under both conditions
+# # Instead use 'obj.include?(something).must_equal true', which passes under both conditions
   require 'redgreen' # must require redgreen AFTER purdytest
   require 'minitest/reporters'
     MiniTest::Unit.runner = MiniTest::SuiteRunner.new
