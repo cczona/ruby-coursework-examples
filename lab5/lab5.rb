@@ -215,5 +215,5 @@ end
 
 
 # FINISH TIMING SCRIPT
-finish = Time.now 
+finish = Time.now
 print 'Elapsed time: ' + (finish.to_f - start.to_f).to_s + ' seconds'
