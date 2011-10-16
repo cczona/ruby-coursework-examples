@@ -1,9 +1,12 @@
 #!/usr/bin/env ruby
 
+# reuse the code you wrote for Lab 4
+
 # BEGIN TIMING SCRIPT
 t = Time.now
 start = t.to_f
 
+# use "Content-type: text/html"
 puts "Content-Type: text-html"
 print "\r\n\r\n"
 
@@ -12,8 +15,6 @@ print "\r\n\r\n"
 ## see obj.method(:name).source_location
 ## lab5_dir=File.dirname(:something_tbd)
 ## $:.unshift(lab5_dir)
-
-require_relative 'cgi_helper'
 
 class Course
 
@@ -206,12 +207,17 @@ class String
      end
     out
   end
+
 end
 
 
 ## TODO: output lab5_template.html.erb
-#require_relative '../lab5_template'
-#puts ERB.new(html).result
+begin
+  require './lab5_template.rb'
+rescue Exception => e
+  puts e.message
+  puts e.backtrace.inspect
+end
 
 
 # FINISH TIMING SCRIPT

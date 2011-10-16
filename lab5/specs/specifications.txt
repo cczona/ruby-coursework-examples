@@ -1,79 +1,29 @@
-# # #
-# Example output: http://hills.ccsf.edu/~dputnam/lab5.cgi
-# # #
-
-# there are three files lab5.cgi, cgi_helper.rb, and lab5_template.html.erb
-
-
-
-# reuse the code you wrote for Lab 4
-
-# add sorting by field name
-
-# allows the user to click the column name to sort the student records
-
-# have a way to send a signal to the script
-
+### Student
 # Student has 10 properties
 
 # Student properties are the fields in the /etc/passwd line, and its @count, @first_name, and @last_name properties
 
-# use HTML links of the format <a href="/~YOURNAME/lab5.cgi?sort_by=shell" >Shell</a> for each of the 10 properties of a Student instance
 
-# determine the column to sort by
 
-# use the CGI class to extract the value of the sort_by parameter
+##### Course
+# When a user clicks on a column name, redisplay the data sorted by that column
+
+# add sorting by field name
 
 # use Enumerable#sort_by to sort Student instances by attribute
 
 # use the send method to accomplish sorting Student instances by attribute
 
-# use ERB templates to create the HTML
-
-# When a user clicks on a column name, redisplay the data sorted by that column
-
-# Toggling sorting from ascending to descending is optional.
+# OPTIONAL: toggling sorting from ascending to descending
 
 # Display the output using an ERB template named lab5_template.html.erb.
-
-# All of the HTML for the page should be in the ERB template, and none in the lab5.cgi script.
-
-# Create a module named CGI_Helper in a file named cgi_helper.rb
-
-# This module should contain method http_header # prints the 'Content-type: text/html' and a blank line.
-
-# CGI_Helper module should contain method humanize(string) # returns a "humanized" string. That is, table field names like "last_name" and "first_name" are returned as "first name" and "last name."
-
-# use humanized field names as labels
-
-# optional method: render_erb(data) # returns a string processed by ERB class. (See the appendix for an example)
-
-# optional method: doctype(type) # returns a valid HTML DOCTYPE. See http://www.w3.org/QA/2002/04/valid-dtd-list.html for a complete list.
+# use ERB template to create the HTML
+# all of the HTML for the page should be in the ERB template
+# no html should be in lab5.cgi
 
 # know which column the user has selected
 
-# use HTML links to transmit the user's choice
-
 # use the CGI class to parse the user choice from the query
-
-# use the QUERY_STRING information to send information from the browser to script
-
-# CGI object will store the key value pairs in a Hash named "params"
-
-################ MORE
-
-# # assuming that we have a page that contains HTML links like this:
-# # <table>
-# # <tr>
- <th><a href="?sort_by=number">Number</a></th>
- <th><a href="?sort_by=user_name">User Name</a></th>
- <th><a href="?sort_by=password">Password</a></th>
- ... and so on ...
- </tr>
-</table> 
-
-
-extract the user selection using the CGI class, in this manner:
 
 require 'cgi_helper'
 include CGIHelper
@@ -85,78 +35,26 @@ http_header # print the Content-type line and blank line
 
 # sort the Student instances using the Enumerable#sort_by method.
 
-# fields is an instance variable in lab5.cgi
-
-# instance variable fields is an array
-
-# instance variable fields contains 10 symbols
-
-# the values of instance variable fields respond to getters matching the provided names
- [ :number, :user_name, :password, :uid, :gid, :gcos_field,:home_directory, :login_shell, 
-:first_name,:last_name] 
-
-# use the @fields array in lab5.cgi to generate table header th tags inside the lab5_template.html.erb file
 
 
-# Inside lab5_template.html.erb
-<table>
- <tr> <!- start the loop to get field names one at a time ->
- <% @fields.each do |field| %>
- <th><a href="?sort_by=<%= field %>"><%= field %></a></th>
- <% end %>
- </tr> <!- End the loop ->
- more good stuff goes here
-</table>
+#### CGI_Helper
+# Create a module named CGI_Helper in a file named cgi_helper.rb
 
-4.2 Creating a Row for Each Student
-Once lab5.cgi has sorted that Student object you will have to display the information for each student. The links to sort by field require HTML. See the following section for information how to display the data as plain text.
+# determine the column to sort by
+# use the CGI class to extract the value of the sort_by parameter
 
-If you decide to use plain text, you can enclose the data inside <pre></pre> tags to format the lines as you print them. You cannot use "Content-type: text/plain" for this lab because your links will NOT work. You must use "Content-type: text/html" and use <pre></pre> tags to display the user information.
+# CGI object will store the key value pairs in a Hash named "params"
 
-Using <pre> to Format Output
-# Inherited from lab5.cgi: 
-@fields = [ :number, :user_name, :password, :uid, 
- :gid, :gcos_field,:home_directory, :login_shell, :first_name,:last_name] 
+# This module should contain method http_header # prints the 'Content-type: text/html' and a blank line.
 
- 
-# Inside lab5_template.html.erb
-<table>
-  <tr> <!- start the loop to get field names one at a time ->
- <% @fields.each do |field| %>
- <th><a href="?sort_by=<%= field %>"><%= field %></a></th>
- <% end %>
- </tr> <!- End the loop ->
-<td>
+# optional method: doctype(type) # returns a valid HTML DOCTYPE. See http://www.w3.org/QA/2002/04/valid-dtd-list.html for a complete list.
 
 
- <pre><!- print student data using <%= %> tags, like this ->
- <% students.each do |student| %>
- <%= student.number %> <%= student.user_name %> etc, etc, etc
- <% end %>
- </pre>
-</td>
-</tr>
-</table>
-The HTML Version
-# In lab5.cgi: 
-@fields = [ :number, :user_name, :password, :uid, :gid, :gcos_field,:home_directory, :login_shell, :first_name,:last_name] 
 
- 
-# Inside lab5_template.html.erb
-<table>
- <tr> <!- start the loop to get field names one at a time ->
- <% @fields.each do |field| %>
- <th><a href="?sort_by=<%= field %>"><%= field %></a></th>
- <% end %>
- </tr> <!- End the loop ->
+#### finally
 
- <!- Display a row for each student ->
- <% students.each do |student| %>
- <tr><td><%= student.number %></td><td><%= student.user_name %></td><td><%= etc, etc, etc %></td></tr>
- <% end %>
+# there are three files lab5.cgi, cgi_helper.rb, and lab5_template.html.erb
 
-</table>
-5 UPLOAD YOUR COMPLETED
-
+# UPLOAD TO HILLS
 
 # combine all three files as lab5.cgi for upload to insight
