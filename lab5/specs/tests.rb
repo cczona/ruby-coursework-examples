@@ -84,7 +84,7 @@ describe String do
 end
 
 describe Course do
-  
+
   before do
     @this_course=Course.new
   end
@@ -92,13 +92,13 @@ describe Course do
   it 'should register that this is not running in the production environment' do
     @this_course.is_production?.must_equal false
   end
-  
-  
+
+
   ############ /etc/group stuff ############
   it 'should have a getter for group' do
     @this_course.must_respond_to :group
   end
-  
+
   it 'should pull data from /etc/group' do
     @this_course.group.must_be_kind_of String
   end
@@ -111,13 +111,13 @@ describe Course do
   it 'should identify 32 members belonging to group c73157' do
     @this_course.members.size.must_equal 32
   end
-  
+
   it 'should find that one of the group members is czona' do
     @this_course.members.wont_be_empty
     @this_course.members.include?('czona').must_equal true
   end
-  
-  
+
+
   ############ /etc/passwd stuff ############
   it 'should have a getter for passwd' do
     @this_course.must_respond_to :passwd
@@ -143,11 +143,11 @@ describe Course do
     @this_course.members.size.must_equal 32
     @this_course.passwd_lines_of_members.size.must_equal 32
   end
-    
+
   it 'should instantiate 32 Student objects' do
     @this_course.students.size.must_equal 32
   end
-    
+
 end
 
 
