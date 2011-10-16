@@ -17,7 +17,7 @@ module CgiHelper
      render_erb(rhtml)
   end
 
-  def render_erb(rhtml)
+ def render_erb(rhtml)
    require 'erb'
    erb = ERB.new(rhtml)
    erb.result(binding)

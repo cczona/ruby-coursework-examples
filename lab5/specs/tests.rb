@@ -7,10 +7,10 @@ begin
   require 'simplecov'
   SimpleCov.start
   SimpleCov.at_exit do
-      puts "Coverage done"
-      SimpleCov.result.format!
-    end
   require 'minitest/spec'
+    puts "Coverage done"
+    SimpleCov.result.format!
+  end
   require 'minitest/autorun'
 # # # # Isolating gems that have a 'gem minitest' dependency because of a Ruby 1.9.1 bug:
 # # test for must_include fail under Ruby 1.9.1 when gem minitest is not present (i.e. CCSF Hills),
@@ -24,7 +24,7 @@ begin
     else
       MiniTest::Unit.runner.reporters << MiniTest::Reporters::ProgressReporter.new
       # MiniTest::Unit.runner.reporters << MiniTest::Reporters::SpecReporter.new # => Turn-like
-  end
+    end
 # # # # Isolating turn for gem minitest issue and also because of second issue:
 # # see <https://github.com/TwP/turn/issues/58>
 #   gem 'minitest'
