@@ -45,6 +45,22 @@ describe Object do
 
 end
 
+
+describe Gem do
+
+  describe 'the MiniTest gem' do
+
+    it 'version should be greater than 1.4.2 to override buggy reporting by the minitest built into Ruby 1.9.1' do
+      # see <http://rubygems.rubyforge.org/rubygems-update/Gem/Version.html#method-i-3C-3D-3E>
+      Gem.loaded_specs.must_include 'minitest'
+      (Gem.loaded_specs['minitest'].version.to_s <=> '1.4.2').must_equal 1
+    end
+
+  end
+
+end
+
+
 describe String do
 
   before do
