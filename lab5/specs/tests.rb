@@ -4,6 +4,12 @@
 
 #coverage must be before anything else!
 begin
+  require 'simplecov'
+  SimpleCov.start
+  SimpleCov.at_exit do
+      puts "Coverage done"
+      SimpleCov.result.format!
+    end
   require 'minitest/spec'
   require 'minitest/autorun'
 # # # # Isolating gems that have a 'gem minitest' dependency because of a Ruby 1.9.1 bug:
