@@ -7,6 +7,12 @@ start = t.to_f
 puts "Content-Type: text-html"
 print "\r\n\r\n"
 
+# when doing requires, start by looking in lab5's directory
+## FIXME: need to dynamically determine the base dir for lab5
+## see obj.method(:name).source_location
+## lab5_dir=File.dirname(:something_tbd)
+## $:.unshift(lab5_dir)
+
 require_relative 'cgi_helper'
 
 require "erb" # after CGI headers

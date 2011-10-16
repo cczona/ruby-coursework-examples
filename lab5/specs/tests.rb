@@ -2,17 +2,6 @@
 ### Optional: MiniTest options can be passed in as arguments to filename, e.g. $ ruby thisfile -- -v
 ### To see all MiniTest options, use $ ruby -r minitest/autorun -e '' -- --help
 
-
-# make require_relative work the same in ruby 1.8, 1.9.1, 1.9.2
-# (courtesy <http://stackoverflow.com/questions/4333286/ruby-require-vs-require-relative-best-practice-to-workaround-running-in-both-r>)
-# unless Kernel.respond_to?(:require_relative)
-#   module Kernel
-#     def require_relative(path)
-#       require File.join(File.dirname(caller[0]), path.to_str)
-#     end
-#   end
-# end
-
 require_relative "../lab5"
 
 begin; require 'minitest/spec'; rescue LoadError => e ;puts e; end
@@ -52,15 +41,6 @@ describe Object do
 
   it "should execute tests using ruby 1.9.1" do
     RUBY_VERSION.must_equal '1.9.1'
-  end
-
-  it 'should execute tests using Bundler environment and gems' do
-    # i.e. executed as $ bundle exec ruby test.rb --verbose
-    Module.constants.include?(:Bundler).must_equal true
-    ENV.keys.include?('BUNDLE_BIN_PATH').must_equal true
-    ENV.keys.include?('BUNDLE_GEMFILE').must_equal true
-    ENV.keys.include?('RUBYOPT').must_equal true
-    ENV[:RUBYOPT].must_match(/bundler/)
   end
 
 end
