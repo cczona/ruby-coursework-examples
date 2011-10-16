@@ -15,8 +15,6 @@ print "\r\n\r\n"
 
 require_relative 'cgi_helper'
 
-require "erb" # after CGI headers
-
 class Course
 
   def initialize(course_id='c73157')
