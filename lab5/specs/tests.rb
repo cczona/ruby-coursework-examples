@@ -181,8 +181,6 @@ describe Student do
   #FIXME: should probably test for some minimal number of initialization arguments, such as an uid
   it 'should be able to instantiate Student based on a passwd line' do
     @this_student.must_be_kind_of Student
-    @this_student.raw_data.must_be_kind_of Array
-    @this_student.raw_data.size.must_equal 8
   end
 
   it 'should store parsed raw data about the student' do
