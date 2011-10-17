@@ -113,7 +113,7 @@ class Course
     end
   end
 
-  # make Course
+  # make students sortable
   include Enumerable
 
   def each(&block)
