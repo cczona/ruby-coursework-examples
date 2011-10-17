@@ -22,7 +22,7 @@
 
   <% @this_course=Course.new %>
 
-  <p>Sorting by: <%= @this_course.sort_by.humanize %>
+  <p>Sorting by: <%= @this_course.sort_by_this.humanize %>
 
   <table>
 
@@ -46,7 +46,7 @@
       <tr>
         <% @this_course.students.sample.fields.each do |field| %>
         <th>
-          <pre><a href="?sort_by=<%= field %>"><%= field.to_s.humanize %></a></pre>
+          <pre><a href="?sort_by_this=<%= field %>"><%= field.to_s.humanize %></a></pre>
         </th>
         <% end %>
       </tr>

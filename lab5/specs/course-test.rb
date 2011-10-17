@@ -80,7 +80,7 @@ describe Course do
       @this_course.column_selection('a_string_is_not_valid').must_equal nil
     end
 
-    it 'extracts the last submitted value of sort_by as the actual column_selection' do
+    it 'extracts the last submitted value of sort_by_this as the actual column_selection' do
       skip
     end
 
@@ -90,34 +90,34 @@ describe Course do
 
   end
 
-  describe "Course@sort_by" do
+  describe "Course@sort_by_this" do
 
-    it 'Course has an instance method called sort_by' do
-      @this_course.must_respond_to :sort_by
+    it 'Course has an instance method called sort_by_this' do
+      @this_course.must_respond_to :sort_by_this
     end
 
-    # "store the user selection in @sort_by"
-    it 'converts column_selection into a sort_by specification' do
+    # "store the user selection in @sort_by_this"
+    it 'converts column_selection into a sort_by_this specification' do
        skip
     end
 
-    it 'stores a symbol in instance variable @sort_by' do
-      @this_course.instance_variables.must_include :@sort_by
-      @this_course.sort_by.must_be_kind_of Symbol
+    it 'stores a symbol in instance variable @sort_by_this' do
+      @this_course.instance_variables.must_include :@sort_by_this
+      @this_course.sort_by_this.must_be_kind_of Symbol
     end
 
-    it 'instance method Course#sort_by stores its outcome to instance variable Course@sort_by' do
+    it 'instance method Course#sort_by_this stores its outcome to instance variable Course@sort_by_this' do
       # FIXME: throw some good/bad/random test values at these
-      a=@this_course.sort_by
-      b=@this_course.instance_variable_get(:@sort_by)
+      a=@this_course.sort_by_this
+      b=@this_course.instance_variable_get(:@sort_by_this)
       a.must_be_same_as b
     end
 
-    it 'sort_by is always one of the members of FIELDS constant' do
-      FIELDS.must_include @this_course.sort_by
+    it 'sort_by_this is always one of the members of FIELDS constant' do
+      FIELDS.must_include @this_course.sort_by_this
 
-      FIELDS.wont_include @this_course.instance_variable_set(:@sort_by, :not_a_valid_field_name)
-      FIELDS.wont_include @this_course.instance_variable_set(:@sort_by, "not_a_symbol")
+      FIELDS.wont_include @this_course.instance_variable_set(:@sort_by_this, :not_a_valid_field_name)
+      FIELDS.wont_include @this_course.instance_variable_set(:@sort_by_this, "not_a_symbol")
     end
 
   end

@@ -25,7 +25,7 @@ class Course
     @passwd=nil
     @passwd_filtered=nil
     @students=[]
-    @sort_by=nil
+    @sort_by_this=nil
     @cgi_obj=args[:cgi_obj]
     @column_selection=nil
 
@@ -91,22 +91,22 @@ class Course
   # "use the CGI class to parse the user choice from the query"
   # "CGI object will store the key value pairs in a Hash named 'params'"
   def column_selection(cgi)
-    if cgi.class == CGI && cgi.respond_to?(:params) && cgi.params.respond_to?('sort_by')
+    if cgi.class == CGI && cgi.respond_to?(:params) && cgi.params.respond_to?('sort_by_this')
       # @column_selection = :home_directory #temp
-      @column_selection = CGI::unescape(cgi.params[:sort_by].last).to_sym # user's last selection is final
+      @column_selection = CGI::unescape(cgi.params[:sort_by_this].last).to_sym # user's last selection is final
     else
       @column_selection = nil
     end
   end
 
   # "determine the column to sort by"
-  def sort_by
-    # return @sort_by unless @sort_by.nil? # use the stored value if possible
+  def sort_by_this
+    # return @sort_by_this unless @sort_by_this.nil? # use the stored value if possible
 
     if FIELDS.include? @column_selection
-      @sort_by = @column_selection
+      @sort_by_this = @column_selection
     else
-      @sort_by = FIELDS.first
+      @sort_by_this = FIELDS.first
     end
   end
 
