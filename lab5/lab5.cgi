@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 
-# reuse the code you wrote for Lab 4
+# filename must be lab5.cgi
+
+# "reuse the code you wrote for Lab 4"
 
 # BEGIN TIMING SCRIPT
 t = Time.now
@@ -255,7 +257,7 @@ begin
   include CGI_Helper
   puts Class.http_header
   puts Class.doctype
-  puts ERB.new(File.read('./lab5_template.rb')).result
+  puts ERB.new(File.read('./lab5_template.html.erb')).result
 rescue => e
   puts e.message
   puts e.backtrace

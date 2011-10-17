@@ -11,8 +11,6 @@
 
 #### finally
 
-# there are three files lab5.cgi, cgi_helper.rb, and lab5_template.html.erb
-
 # UPLOAD TO HILLS
 
 # combine all three files as lab5.cgi for upload to insight

@@ -35,7 +35,11 @@ rescue LoadError => e
 end
 
 
-require_relative "../lab5"
+# FIXME: require and require_relative complain "no such file"
+# require(File.absolute_path(File.dirname(__FILE__) + '/' + "../lab5.cgi"))
+# require(File.absolute_path("../lab5.cgi"))
+# require_relative(File.absolute_path("../lab5.cgi"))
+require_relative("../lab5.cgi")
 
 
 describe 'meta' do

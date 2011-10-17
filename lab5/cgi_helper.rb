@@ -1,4 +1,4 @@
-# Create a module named CGI_Helper in a file named cgi_helper.rb
+# "Create a module named CGI_Helper in a file named cgi_helper.rb"
 
 module CGI_Helper
 
