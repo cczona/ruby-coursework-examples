@@ -4,6 +4,16 @@
 
 <head>
   <title>Lab5 - Carina Zona</title>
+  <link rel="stylesheet" type="text/css" href="http://douglasputnam.com/css/html5.css" />
+  <link rel="stylesheet" type="text/css" href="/~dputnam/stylesheets/lab4.css" />
+  <style>
+      h1 {font-size: 120%}
+      th a {}
+      th a:link {color:gold}
+      th a:visited {color:lightblue}
+      th a:link {color:gold}
+  </style>
+
 </head>
 
 <body>
