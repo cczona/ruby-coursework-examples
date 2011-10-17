@@ -95,9 +95,8 @@ class Course
   # "use the CGI class to parse the user choice from the query"
   # "CGI object will store the key value pairs in a Hash named 'params'"
   def column_selection(cgi)
-    if cgi.class == CGI && cgi.respond_to?(:params) && cgi.params.respond_to?('sort_by_this')
-      # @column_selection = :home_directory #temp
-      @column_selection = CGI::unescape(cgi.params[:sort_by_this].last).to_sym # user's last selection is final
+    if (cgi.class == CGI && cgi.respond_to?(:params) && !cgi.params['sort_by_this'].empty?)
+      @column_selection = CGI::unescape(cgi.params['sort_by_this'].last).to_sym # user's last selection is final
     else
       @column_selection = nil
     end
