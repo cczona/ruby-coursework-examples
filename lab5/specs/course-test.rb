@@ -65,4 +65,61 @@ describe Course do
     @this_course.students.size.must_equal 32
   end
 
+
+  ########### input processing stuff ###########
+  describe "Course.column_selection" do
+
+    it 'Course has an instance method called column_selection' do
+      @this_course.must_respond_to :column_selection
+    end
+
+    it 'requires a cgi object as argument' do
+      skip
+      @this_course.column_selection() ### FIXME: should fail
+      @this_course.column_selection(CGI.new) # FIXME: should succeed
+      @this_course.column_selection('a_string_is_not_valid').must_equal nil
+    end
+
+    it 'extracts the last submitted value of sort_by as the actual column_selection' do
+      skip
+    end
+
+    it 'stores column_selection as a symbol or else nil' do
+      [Symbol, NilClass].must_include @this_course.column_selection(CGI.new).class
+    end
+
+  end
+
+  describe "Course@sort_by" do
+
+    it 'Course has an instance method called sort_by' do
+      @this_course.must_respond_to :sort_by
+    end
+
+    # "store the user selection in @sort_by"
+    it 'converts column_selection into a sort_by specification' do
+       skip
+    end
+
+    it 'stores a symbol in instance variable @sort_by' do
+      @this_course.instance_variables.must_include :@sort_by
+      @this_course.sort_by.must_be_kind_of Symbol
+    end
+
+    it 'instance method Course#sort_by stores its outcome to instance variable Course@sort_by' do
+      # FIXME: throw some good/bad/random test values at these
+      a=@this_course.sort_by
+      b=@this_course.instance_variable_get(:@sort_by)
+      a.must_be_same_as b
+    end
+
+    it 'sort_by is always one of the members of FIELDS constant' do
+      FIELDS.must_include @this_course.sort_by
+
+      FIELDS.wont_include @this_course.instance_variable_set(:@sort_by, :not_a_valid_field_name)
+      FIELDS.wont_include @this_course.instance_variable_set(:@sort_by, "not_a_symbol")
+    end
+
+  end
+
 end

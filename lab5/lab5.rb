@@ -14,14 +14,20 @@ start = t.to_f
 
 FIELDS=[ :number, :user_name, :password, :uid, :gid, :gcos_field, :home_directory, :login_shell, :first_name, :last_name]
 
+require 'CGI'
+
+
 class Course
 
-  def initialize(course_id='c73157')
-    @course_id=course_id
+  def initialize( args={ :course_id => 'c73157', :cgi_obj => CGI.new } )
+    @course_id=args[:course_id]
     @members=nil
     @passwd=nil
     @passwd_filtered=nil
     @students=[]
+    @sort_by=nil
+    @cgi_obj=args[:cgi_obj]
+    @column_selection=nil
 
     passwd
     passwd_lines_of_members
@@ -78,6 +84,30 @@ class Course
       end
     end
     @students
+  end
+
+  # "know which column the user has selected"
+  # "use the CGI class to extract the value"
+  # "use the CGI class to parse the user choice from the query"
+  # "CGI object will store the key value pairs in a Hash named 'params'"
+  def column_selection(cgi)
+    if cgi.class == CGI && cgi.respond_to?(:params) && cgi.params.respond_to?('sort_by')
+      # @column_selection = :home_directory #temp
+      @column_selection = CGI::unescape(cgi.params[:sort_by].last).to_sym # user's last selection is final
+    else
+      @column_selection = nil
+    end
+  end
+
+  # "determine the column to sort by"
+  def sort_by
+    # return @sort_by unless @sort_by.nil? # use the stored value if possible
+
+    if FIELDS.include? @column_selection
+      @sort_by = @column_selection
+    else
+      @sort_by = FIELDS.first
+    end
   end
 
 end

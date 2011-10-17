@@ -8,6 +8,10 @@
 
 <body>
 
+  <% @this_course=Course.new %>
+
+  <p>Sorting by: <%= @this_course.sort_by.humanize %>
+
   <table>
 
     <thead>
@@ -22,8 +26,7 @@
         *  humanizing includes uppercase words per implied spec of output sample
       -->
       <tr>
-        <% this_course=Course.new
-        this_course.students.sample.fields.each do |field| %>
+        <% @this_course.students.sample.fields.each do |field| %>
         <th>
           <pre><a href="?sort_by=<%= field %>"><%= field.to_s.humanize %></a></pre>
         </th>
@@ -34,7 +37,7 @@
 
     <tbody>
 
-    <% this_course.students.each do | s |
+    <% @this_course.students.each do | s |
 
       if s.parsed_name[1][0].downcase < "l" then
         def s.last_name
