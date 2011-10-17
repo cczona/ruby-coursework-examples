@@ -3,7 +3,7 @@
 module CGI_Helper
 
   def humanize
-    self.to_s.gsub(/_/, ' ')
+    self.to_s.gsub(/_/, ' ').ucwords
   end
 
   def http_header

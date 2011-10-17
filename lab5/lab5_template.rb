@@ -19,12 +19,13 @@
         *  use the QUERY_STRING information to send information from the browser to script
         *  use humanized field names as labels
         *  use <pre></pre> tags to display the user information
+        *  humanizing includes uppercase words per implied spec of output sample
       -->
       <tr>
         <% this_course=Course.new
         this_course.students.sample.fields.each do |field| %>
         <th>
-          <pre><a href="?sort_by=<%= field %>"><%= field.to_s.humanize.ucwords %></a></pre>
+          <pre><a href="?sort_by=<%= field %>"><%= field.to_s.humanize %></a></pre>
         </th>
         <% end %>
       </tr>

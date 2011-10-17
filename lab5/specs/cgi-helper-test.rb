@@ -23,8 +23,8 @@ describe "CGI_Module" do
   # return a "humanized" string
   # i.e. table field names like "last_name" and "first_name" are to be returned as "first name" and "last name."
   it 'humanize by transforming receiver to a string then converting underscores to spaces' do
-    'table_first_name'.humanize.must_equal 'table first name'
-    :table_first_name.humanize.must_equal 'table first name'
+    'table_first_name'.humanize.must_equal 'Table First Name'
+    :table_first_name.humanize.must_equal 'Table First Name'
   end
 
   # optional method: doctype(type) returns a valid HTML DOCTYPE
