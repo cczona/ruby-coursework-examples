@@ -36,7 +36,8 @@ class Course
   end
 
   def is_production?
-    ENV['HOME']=='/students/czona' ? @production=true : @production=false
+    #  another candidate: ENV['SERVER_SIGNATURE'].match(%r{hills.ccsf.cc.ca.us})
+    ( ENV["HTTP_HOST"]=="hills.ccsf.edu" || ENV["SERVER_ADDR"]=='147.144.1.2' || ENV['USER'] == 'czona' ) ? @production=true : @production=false
   end
 
   def group
