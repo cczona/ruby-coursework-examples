@@ -86,6 +86,7 @@ class Course
         @students.push(Student.new(account))
       end
     end
+
     @students
   end
 
