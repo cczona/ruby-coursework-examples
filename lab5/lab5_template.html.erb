@@ -23,6 +23,9 @@
   <h1>Lab5 - Carina Zona</h1>
 
   <% @this_course=Course.new %>
+  <% @method_name=@this_course.sort_by_this %>
+
+  <p>Sorting by: <%= @method_name.humanize %></p>
 
   <p>Sorting by: <%= @this_course.sort_by_this.humanize %></p>
 
@@ -60,7 +63,6 @@
     <tbody>
 
     <%
-      @method_name=@this_course.sort_by_this
       @this_course.sort_by(&@method_name)
       @this_course.students.each do | s |
 
