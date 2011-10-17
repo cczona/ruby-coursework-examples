@@ -22,7 +22,7 @@
 
   <% @this_course=Course.new %>
 
-  <p>Sorting by: <%= @this_course.sort_by_this.humanize %>
+  <p>Sorting by: <%= @this_course.sort_by_this.humanize %></p>
 
   <table>
 
