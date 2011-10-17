@@ -67,7 +67,7 @@ describe Course do
 
 
   ########### input processing stuff ###########
-  describe "Course.column_selection" do
+  describe "Course#column_selection" do
 
     it 'Course has an instance method called column_selection' do
       @this_course.must_respond_to :column_selection
