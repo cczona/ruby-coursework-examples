@@ -29,7 +29,7 @@ class Course
     @students=[]
     @sort_by_this=nil
     @cgi_obj=args[:cgi_obj]
-    @column_selection=nil
+    @column_selection=column_selection(args[:cgi_obj])
 
     passwd
     passwd_lines_of_members
