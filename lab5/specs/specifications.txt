@@ -1,10 +1,3 @@
-### Student
-# Student has 10 properties
-
-# Student properties are the fields in the /etc/passwd line, and its @count, @first_name, and @last_name properties
-
-
-
 ##### Course
 # When a user clicks on a column name, redisplay the data sorted by that column
 
@@ -14,36 +7,11 @@
 
 # use the send method to accomplish sorting Student instances by attribute
 
-# OPTIONAL: toggling sorting from ascending to descending
-
-# Display the output using an ERB template named lab5_template.html.erb.
-# use ERB template to create the HTML
-# all of the HTML for the page should be in the ERB template
-# no html should be in lab5.cgi
-
-# know which column the user has selected
-
-# use the CGI class to parse the user choice from the query
-
-require 'cgi_helper'
-include CGIHelper
-require 'cgi'
-http_header # print the Content-type line and blank line
 @sort_by = CGI.new.params['sort_by'].to_s
-
-# store the user selection in @sort_by
 
 # sort the Student instances using the Enumerable#sort_by method.
 
-
-
-#### CGI_Helper
-
-# determine the column to sort by
-# use the CGI class to extract the value of the sort_by parameter
-
-# CGI object will store the key value pairs in a Hash named "params"
-
+# OPTIONAL: toggling sorting from ascending to descending
 
 
 

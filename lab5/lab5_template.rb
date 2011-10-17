@@ -26,6 +26,12 @@
         *  use humanized field names as labels
         *  use <pre></pre> tags to display the user information
         *  humanizing includes uppercase words per implied spec of output sample
+        *  Student has 10 properties
+        *  Student properties are the fields in the /etc/passwd line, and its @count, @first_name, and @last_name properties
+        *  use ERB template to create the HTML
+        *  display the output using an ERB template named lab5_template.html.erb
+        *  all of the HTML for the page should be in the ERB template
+        *  no html should be in lab5.cgi
       -->
       <tr>
         <% @this_course.students.sample.fields.each do |field| %>
