@@ -110,6 +110,13 @@ class Course
     end
   end
 
+  # make Course
+  include Enumerable
+
+  def each(&block)
+    @students.each { |student| block.call(student) }
+  end
+
 end
 
 

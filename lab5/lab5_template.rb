@@ -33,6 +33,8 @@
         *  use @fields array in lab5.cgi to generate table header th tags inside lab5_template.html.erb file
         *  use HTML links to transmit the user's choice
         *  use the QUERY_STRING information to send information from the browser to script
+        *  add sorting by field name
+        *  use Enumerable#sort_by to sort Student instances by attribute
         *  use humanized field names as labels
         *  use <pre></pre> tags to display the user information
         *  humanizing includes uppercase words per implied spec of output sample
@@ -55,7 +57,10 @@
 
     <tbody>
 
-    <% @this_course.students.each do | s |
+    <%
+      @method_name=@this_course.sort_by_this
+      @this_course.sort_by(&@method_name)
+      @this_course.students.each do | s |
 
       if s.parsed_name[1][0].downcase < "l" then
         def s.last_name

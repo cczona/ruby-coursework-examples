@@ -122,4 +122,28 @@ describe Course do
 
   end
 
+  describe "Course#sort_by" do
+
+    it 'Course included module Enumerable successfully' do
+      Module.constants.must_include :Enumerable
+    end
+
+    it 'Course has an instance method called each' do # required for Enumerable
+      @this_course.must_respond_to :each
+    end
+
+    it "Course has instance method sort_by" do
+      @this_course.must_respond_to :sort_by
+    end
+
+    it 'sort_by is provided by Enumerable' do
+      @this_course.method(:sort_by).to_s.must_equal("#<Method: Course(Enumerable)#sort_by>")
+    end
+
+    it 'sort_by responds as expected' do
+      skip
+    end
+
+  end
+
 end
