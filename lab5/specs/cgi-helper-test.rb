@@ -3,7 +3,7 @@ require_relative './test-prelude'
 describe "CGI_Helper module" do
 
   it 'the CGI_Helper module must have been included successfully' do
-    Module.constants.include? :CGI_Helper
+    Module.constants.must_include :CGI_Helper
   end
 
   it 'imports all methods into Class namespace' do
