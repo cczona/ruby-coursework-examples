@@ -104,8 +104,7 @@ class Course
 
   # "determine the column to sort by"
   def sort_by_this
-    # return @sort_by_this unless @sort_by_this.nil? # use the stored value if possible
-
+    return @sort_by_this unless @sort_by_this.nil? # use the stored value if possible
     if FIELDS.include? @column_selection
       @sort_by_this = @column_selection
     else
