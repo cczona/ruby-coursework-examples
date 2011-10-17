@@ -16,7 +16,7 @@ start = t.to_f
 
 FIELDS=[ :number, :user_name, :password, :uid, :gid, :gcos_field, :home_directory, :login_shell, :first_name, :last_name]
 
-require 'CGI'
+require 'cgi'
 
 
 class Course
