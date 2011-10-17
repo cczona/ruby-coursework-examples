@@ -8,6 +8,8 @@
 
 <body>
 
+  <h1>Lab5 - Carina Zona</h1>
+
   <% @this_course=Course.new %>
 
   <p>Sorting by: <%= @this_course.sort_by.humanize %>
