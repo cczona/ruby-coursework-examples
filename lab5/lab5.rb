@@ -12,6 +12,8 @@ start = t.to_f
 ## lab5_dir=File.dirname(:something_tbd)
 ## $:.unshift(lab5_dir)
 
+FIELDS=[ :number, :user_name, :password, :uid, :gid, :gcos_field, :home_directory, :login_shell, :first_name, :last_name]
+
 class Course
 
   def initialize(course_id='c73157')
@@ -80,12 +82,13 @@ class Course
 
 end
 
+
 class Student
   def initialize(passwd_line)
     @name_parts=nil
     @@count ||= 0
     @@count+=1
-    @fields = [ :number, :user_name, :password, :uid, :gid, :gcos_field,:home_directory, :login_shell, :first_name,:last_name]
+    @fields = FIELDS # fields is required to be an instance variable in lab5.cgi
     @raw_data=passwd_line.sub(/^(.+?)\n/, "\\1").split(':').unshift @@count # passwd's data, plus append ran
   end
 

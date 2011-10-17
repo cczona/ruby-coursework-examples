@@ -11,9 +11,12 @@ describe Student do
     Student.class.must_be_kind_of Class
   end
 
-  it 'has an instance variable called fields' do
+  it 'has an instance variable called fields which references constant FIELDS' do
     @this_student.instance_variables.must_include :@fields
-    # need to identify
+    Module.constants.must_include :FIELDS
+
+    @this_student.instance_variable_get(:@fields).must_equal FIELDS
+    @this_student.instance_variable_get(:@fields).must_be_same_as FIELDS
   end
 
   it 'defined the fields variable in lab5.cgi' do
