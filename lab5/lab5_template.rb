@@ -11,14 +11,15 @@
   <table>
 
     <thead>
-      <!-- LACKS TEST: allows the user to click the column name to sort the student records -->
-      <!-- LACKS TEST: have a way to send a signal to the script -->
-      <!-- LACKS TEST: use @fields array in lab5.cgi to generate table header th tags inside lab5_template.html.erb file -->
-      <!-- LACKS TEST: use HTML links to transmit the user's choice -->
-      <!-- LACKS TEST: # use the QUERY_STRING information to send information from the browser to script -->
-      <!-- LACKS TEST: use humanized field names as labels  -->
-      <!-- LACKS TEST: use <pre></pre> tags to display the user information -->
-      <!-- LACKS TEST: field label words to uppercase per implied spec of output sample  -->
+      <!-- SPECS
+        *  allows the user to click the column name to sort the student records
+        *  have a way to send a signal to the script
+        *  use @fields array in lab5.cgi to generate table header th tags inside lab5_template.html.erb file
+        *  use HTML links to transmit the user's choice
+        *  use the QUERY_STRING information to send information from the browser to script
+        *  use humanized field names as labels
+        *  use <pre></pre> tags to display the user information
+      -->
       <tr>
         <% this_course=Course.new
         this_course.students.sample.fields.each do |field| %>
