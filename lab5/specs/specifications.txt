@@ -38,16 +38,12 @@ http_header # print the Content-type line and blank line
 
 
 #### CGI_Helper
-# Create a module named CGI_Helper in a file named cgi_helper.rb
 
 # determine the column to sort by
 # use the CGI class to extract the value of the sort_by parameter
 
 # CGI object will store the key value pairs in a Hash named "params"
 
-# This module should contain method http_header # prints the 'Content-type: text/html' and a blank line.
-
-# optional method: doctype(type) # returns a valid HTML DOCTYPE. See http://www.w3.org/QA/2002/04/valid-dtd-list.html for a complete list.
 
 
 

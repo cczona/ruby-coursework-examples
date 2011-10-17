@@ -6,10 +6,6 @@
 t = Time.now
 start = t.to_f
 
-# use "Content-type: text/html"
-puts "Content-Type: text-html"
-print "\r\n\r\n"
-
 # when doing requires, start by looking in lab5's directory
 ## FIXME: need to dynamically determine the base dir for lab5
 ## see obj.method(:name).source_location
@@ -187,6 +183,7 @@ class Student
 
 end
 
+
 class String
 
   def ucwords
@@ -211,12 +208,17 @@ class String
 end
 
 
-## TODO: output lab5_template.html.erb
+# Ready to generate output
 begin
-  require './lab5_template.rb'
-rescue Exception => e
+  require 'erb'
+  require_relative './cgi_helper.rb'
+  include CGI_Helper
+  puts Class.http_header
+  puts Class.doctype
+  puts ERB.new(File.read('./lab5_template.rb')).result
+rescue => e
   puts e.message
-  puts e.backtrace.inspect
+  puts e.backtrace
 end
 
 

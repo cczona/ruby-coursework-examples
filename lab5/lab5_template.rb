@@ -1,19 +1,18 @@
-# # #
-# Example output: http://hills.ccsf.edu/~dputnam/lab5.cgi
-# # #
-
-html=<<HTML
 <html>
+
+<!-- Example output: http://hills.ccsf.edu/~dputnam/lab5.cgi -->
+
 <head>
-<title>Lab5 - Carina Zona</title>
+  <title>Lab5 - Carina Zona</title>
 </head>
+
 <body>
 
   <table>
 
     <thead>
       <!-- LACKS TEST: allows the user to click the column name to sort the student records -->
-      <--  LACKS TEST: have a way to send a signal to the script -->
+      <!-- LACKS TEST: have a way to send a signal to the script -->
       <!-- LACKS TEST: use @fields array in lab5.cgi to generate table header th tags inside lab5_template.html.erb file -->
       <!-- LACKS TEST: use HTML links to transmit the user's choice -->
       <!-- LACKS TEST: # use the QUERY_STRING information to send information from the browser to script -->
@@ -92,15 +91,3 @@ html=<<HTML
 
 </body>
 </html>
-HTML
-
-begin
-  require 'erb'
-  require_relative './cgi_helper.rb'
-  erb=ERB.new(html)
-  puts erb.result(binding)
-rescue => e
-  puts e.class
-  puts e.message
-  puts e.backtrace.inspect
-end

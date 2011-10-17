@@ -1,30 +1,17 @@
+# Create a module named CGI_Helper in a file named cgi_helper.rb
+
 module CGI_Helper
 
   def humanize
-    self.gsub(/_/, ' ')
+    self.to_s.gsub(/_/, ' ')
+  end
+
+  def http_header
+    "Content-type: text/html\n\n"
+  end
+
+  def doctype
+    %q{<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">}
   end
 
 end
-
-
-class String
-
-  include CGI_Helper
-
-end
-
-## Assuming we have a file named index.html, we can render it as HTML using ERB.
-#
-# <!-- index.html --> <%= @name %>
-# We can use this module like this:
-#
-# #!/usr/local/bin/ruby
-# require 'cgi_helper'
-# include CgiHelper
-# @name = 'Yosemite Sam'
-# puts render_erb('index.rhtml')
-# And the output will be:
-#
-# <!-- index.html -->
-# Yosemite Sam
-##
