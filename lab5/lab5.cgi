@@ -263,8 +263,3 @@ rescue => e
   puts e.message
   puts e.backtrace
 end
-
-
-# FINISH TIMING SCRIPT
-finish = Time.now
-print 'Elapsed time: ' + (finish.to_f - start.to_f).to_s + ' seconds'
