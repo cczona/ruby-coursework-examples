@@ -1,6 +1,6 @@
 require_relative './test-prelude'
 
-describe "CGI_Module" do
+describe "CGI_Helper module" do
 
   it 'the CGI_Helper module must have been included successfully' do
     Module.constants.include? :CGI_Helper
