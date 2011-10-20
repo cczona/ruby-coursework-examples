@@ -8,9 +8,7 @@ files.each do |filename|
 
     # FIXME: run tests against approximation of CCSF environment
     # specific_ruby="/Users/cczona/.rvm/rubies/ruby-1.9.1-p431/bin/ruby -I.:lib:test -rubygems -e  "%w[test/unit test/test_helper.rb test/test_watchr.rb].each { |f| require f }\""
-    
-    specific_ruby="ruby"
-    
+
     puts growl_it=` \
     date;
     echo;
