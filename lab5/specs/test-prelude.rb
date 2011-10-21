@@ -11,10 +11,6 @@ begin
   end
   Gem.loaded_specs # UNDOCUMENTED: Ruby 1.9.1 will fail to load "gem 'minitest'" unless Gem.loaded_specs is called first.
   require 'minitest/autorun'
-# # # # Isolating gems that have a 'gem minitest' dependency because of a Ruby 1.9.1 bug:
-# # test for must_include fail under Ruby 1.9.1 when gem minitest is not present (i.e. CCSF Hills),
-# # but the same tests pass when gem minitest > 1.4.2 is present.
-# # Instead use 'obj.include?(something).must_equal true', which passes under both conditions
   require 'redgreen' # must require redgreen AFTER purdytest
   require 'minitest/reporters'
     MiniTest::Unit.runner = MiniTest::SuiteRunner.new
@@ -52,6 +48,10 @@ describe 'meta' do
     # see <http://rubygems.rubyforge.org/rubygems-update/Gem/Version.html#method-i-3C-3D-3E>
     Gem.loaded_specs.must_include 'minitest'
     Gem.loaded_specs['minitest'].version.must_be :>, Gem::Version.create('1.4.2') # NOTE, the comma is wierd but required
+
+    # NOTE: obj.must_include test fail under Ruby 1.9.1 when gem minitest is not present (i.e. CCSF Hills),
+    # The same tests pass are correctly evaluated when gem minitest > 1.4.2 is present.
+    # Substitute 'obj.include?(something).must_equal true', which passes under both conditions
   end
 
 end
