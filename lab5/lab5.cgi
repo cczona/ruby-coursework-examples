@@ -6,7 +6,7 @@
 
 # BEGIN TIMING SCRIPT
 t = Time.now
-start = t.to_f
+@start = t.to_f
 
 # when doing requires, start by looking in lab5's directory
 ## FIXME: need to dynamically determine the base dir for lab5
