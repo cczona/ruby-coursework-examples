@@ -39,7 +39,7 @@ end
 # require(File.absolute_path(File.dirname(__FILE__) + '/' + "../lab5.cgi"))
 # require(File.absolute_path("../lab5.cgi"))
 # require_relative(File.absolute_path("../lab5.cgi"))
-require_relative("../lab5.cgi")
+load(File.expand_path("../../lab5.cgi", __FILE__))
 
 
 describe 'meta' do
