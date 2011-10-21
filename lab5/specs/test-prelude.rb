@@ -30,12 +30,8 @@ rescue LoadError => e
   puts e
 end
 
-
-# FIXME: require and require_relative complain "no such file"
-# require(File.absolute_path(File.dirname(__FILE__) + '/' + "../lab5.cgi"))
-# require(File.absolute_path("../lab5.cgi"))
-# require_relative(File.absolute_path("../lab5.cgi"))
-load(File.expand_path("../../lab5.cgi", __FILE__))
+# load, because 1.9.1's require/require_relative balk when there's a file extension they're not expecting
+load(File.dirname(Dir.pwd) + '/lab5.cgi')
 
 
 describe 'meta' do

@@ -8,12 +8,6 @@
 t = Time.now
 @start = t.to_f
 
-# when doing requires, start by looking in lab5's directory
-## FIXME: need to dynamically determine the base dir for lab5
-## see obj.method(:name).source_location
-## lab5_dir=File.dirname(:something_tbd)
-## $:.unshift(lab5_dir)
-
 FIELDS=[ :number, :user_name, :password, :uid, :gid, :gcos_field, :home_directory, :login_shell, :first_name, :last_name]
 
 require 'cgi'
@@ -258,7 +252,7 @@ begin
   include CGI_Helper
   puts Class.http_header
   puts Class.doctype
-  puts ERB.new(File.read('./lab5_template.html.erb'), nil, '<>').result
+  puts ERB.new(File.read(File.dirname(__FILE__) + '/lab5_template.html.erb'), nil, '<>').result
 rescue => e
   puts e.message
   puts e.backtrace
