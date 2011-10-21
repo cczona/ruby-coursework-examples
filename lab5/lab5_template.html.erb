@@ -113,8 +113,7 @@
 
   </table>
 
-  <% @finish = Time.now %>
-  <p>Elapsed Time: <strong><%=(@finish.to_f - @start.to_f).to_s %> seconds</strong></p>
+  <p>Elapsed Time: <strong><%=(Time.now.to_f - @start.to_f).round(2).to_s %> seconds</strong></p>
 
 </body>
 </html>
