@@ -116,7 +116,8 @@ class Course
   include Enumerable
 
   def each(&block)
-    @students.each { |student| block.call(student) }
+    puts __LINE__
+    @students=students.each { |student| block.call(student) }
   end
 
 end
@@ -257,7 +258,7 @@ begin
   include CGI_Helper
   puts Class.http_header
   puts Class.doctype
-  puts ERB.new(File.read('./lab5_template.html.erb')).result
+  puts ERB.new(File.read('./lab5_template.html.erb'), nil, '<>').result
 rescue => e
   puts e.message
   puts e.backtrace

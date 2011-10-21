@@ -22,17 +22,10 @@
 
   <h1>Lab5 - Carina Zona</h1>
 
-  <% @this_course=Course.new %>
-  <% @method_name=@this_course.sort_by_this %>
-
-  <p>Sorting by: <%= @method_name.humanize %></p>
-
-  <p>Sorting by: <%= @this_course.sort_by_this.humanize %></p>
-
   <table>
 
     <thead>
-      <!-- SPECS
+      <%# SPECS
         *  display the output using an ERB template named lab5_template.html.erb
         *  allows the user to click the column name to sort the student records
         *  have a way to send a signal to the script
@@ -49,9 +42,9 @@
         *  use ERB template to create the HTML
         *  all of the HTML for the page should be in the ERB template
         *  no html should be in lab5.cgi
-      -->
+      %>
       <tr>
-        <% @this_course.students.sample.fields.each do |field| %>
+        <% FIELDS.each do |field| %>
         <th>
           <pre><a href="?sort_by_this=<%= field %>"><%= field.to_s.humanize %></a></pre>
         </th>
@@ -63,25 +56,24 @@
     <tbody>
 
     <%
-      @this_course.sort_by(&@method_name)
-      @this_course.students.each do | s |
-
-      if s.parsed_name[1][0].downcase < "l" then
-        def s.last_name
-          parsed_name[1].ucwords
-        end
-        def s.first_name
-          parsed_name[0].ucwords
-        end
-      else
-        def s.last_name
-          parsed_name[1].altcase
-        end
-        def s.first_name
-          parsed_name[0].altcase
-        end
-      end
-
+		  @this_course=Course.new
+			@this_course.students.sort_by(&@this_course.sort_by_this).each do | s |
+	      if s.parsed_name[1][0].downcase < "l" then
+	        def s.last_name
+	          parsed_name[1].ucwords
+	        end
+	        def s.first_name
+	          parsed_name[0].ucwords
+	        end
+	      else
+	        def s.last_name
+	          parsed_name[1].altcase
+	        end
+	        def s.first_name
+	          parsed_name[0].altcase
+	        end
+	    	end
+			# ...not time to end the block yet...
     %>
 
       <tr>
