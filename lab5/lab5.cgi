@@ -42,7 +42,7 @@ class Course
 
   def group
     production_path='/etc/group'
-    development_path='/Users/cczona/Homework/ruby/lab5/group-sample'
+    development_path=File.expand_path('../group-sample', __FILE__)
 
     if is_production?
       f=File.readlines(production_path)
@@ -55,7 +55,7 @@ class Course
 
   def passwd
     production_path='/etc/passwd'
-    development_path='/Users/cczona/Homework/ruby/lab5/passwd-sample'
+    development_path=File.expand_path('../passwd-sample', __FILE__)
 
     if @passwd.nil?
       if is_production?
