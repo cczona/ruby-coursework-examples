@@ -9,6 +9,7 @@ begin
   SimpleCov.at_exit do
     SimpleCov.result.format!
   end
+  Gem.loaded_specs # UNDOCUMENTED: Ruby 1.9.1 will fail to load "gem 'minitest'" unless Gem.loaded_specs is called first.
   require 'minitest/autorun'
 # # # # Isolating gems that have a 'gem minitest' dependency because of a Ruby 1.9.1 bug:
 # # test for must_include fail under Ruby 1.9.1 when gem minitest is not present (i.e. CCSF Hills),
