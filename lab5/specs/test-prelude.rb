@@ -26,7 +26,6 @@ begin
     end
 # # # # Isolating turn for gem minitest issue and also because of second issue:
 # # see <https://github.com/TwP/turn/issues/58>
-#   gem 'minitest'
 #   require 'turn'
 # end # OPTIONAL: if "gem ansi" is available, will also colorize
 # # # #
