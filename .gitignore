@@ -1,0 +1,5 @@
+**/coverage
+**/coverage/*
+**/**/coverage/**
+cgi-bin
+bin
