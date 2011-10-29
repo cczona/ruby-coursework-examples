@@ -24,11 +24,12 @@ describe "Lab6_files" do
   end
 
   # Using the file module in the Ruby Standard Library
-  it 'uses the File module of ruby standard library' do
+  # Dir lib is fine per http://insight.ccsf.edu/mod/forum/discuss.php?d=239627
+  it 'uses the File or Dir module of ruby standard library' do
     skip
     # FIX: brittle; File may have been included by something else, or the lab may have included it w/o using
-    # Module.constants.must_include :File
-    File.ancestors.must_include Lab6Files
+    Module.constants.must_include(:File) || Module.constants.must_include(:Dir)
+    # File.ancestors.must_include Lab6Files || Dir.ancestors.must_include Lab6Files # no good: File & Dir are core, not requires
   end
 
   it 'generates a web page' do
