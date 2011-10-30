@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 class Generate
 
   def is_production?
