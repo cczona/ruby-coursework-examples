@@ -7,6 +7,7 @@ load(File.dirname(Dir.pwd) + '/lab6_files.cgi')
 describe "Generate" do
 
   before do
+    ARGV.clear
     @tested=Generate.new
   end
 
