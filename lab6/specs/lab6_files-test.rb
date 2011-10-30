@@ -46,7 +46,9 @@ describe "Lab6_files" do
   end
 
   it 'is consistent with the instructor Lab6_files sample' do
-    skip
+    path=File.expand_path('../../examples/lab6_files.html',__FILE__)
+    example=File.readlines(path)
+    proc {puts Lab6Files.new.output}.must_output example
   end
 
 end
