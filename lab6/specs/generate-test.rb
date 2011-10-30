@@ -1,4 +1,4 @@
-require_relative 'helper.rb'
+require_relative './helper.rb'
 require_relative '../generate.rb'
 # load, because 1.9.1's require/require_relative balk when there's a file extension they're not expecting
 load(File.dirname(Dir.pwd) + '/lab6_files.cgi')
