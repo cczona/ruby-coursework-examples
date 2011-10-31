@@ -69,6 +69,8 @@ describe "Generate" do
   it 'stores the new app structure in the DATA object' do
     # FIXME: does not really test for the app structure
     @tested.data.must_be_instance_of String
+    @tested.data.size.must_be :>, 1
+    @tested.data.split("\n").size.must_equal 27
   end
 
 end
