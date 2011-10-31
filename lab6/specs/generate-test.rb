@@ -66,6 +66,11 @@ describe "Generate" do
     @tested.sane?.must_equal true
   end
 
+  it 'stores the new app structure in the DATA object' do
+    # FIXME: does not really test for the app structure
+    @tested.data.must_be_instance_of String
+  end
+
 end
 
 

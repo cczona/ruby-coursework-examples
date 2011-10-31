@@ -1,10 +1,23 @@
 #!/usr/bin/env ruby
 
+if Module.const_defined?(:DATA) # external tests can't see this
+  SOURCE=DATA
+  POSITION=SOURCE.pos
+else
+  SOURCE=File.new(__FILE__)
+  POSITION=File.read(SOURCE).match(/^__END__.*$/).offset(0)[1]+1
+end
+
 class Generate
   ALLOWED_CHARACTERS=('a'..'z').to_a + ('A'..'Z').to_a  + ('0'..'9').to_a  << '-' << '_'
 
   def initialize
     $:.unshift script_directory # add app base directory to load path
+  end
+
+  def data
+    SOURCE.pos=POSITION
+    SOURCE.read
   end
 
   def is_production?
@@ -51,3 +64,5 @@ class Generate
 
 end
 
+
+__END__
