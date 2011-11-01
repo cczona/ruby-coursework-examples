@@ -1,7 +1,7 @@
-require_relative './helper.rb'
-require_relative '../generate.rb'
+require 'simplecov'; SimpleCov.start # needed at top, even bofore requiring the helper(!)
+require_relative 'helper'
 # load, because 1.9.1's require/require_relative balk when there's a file extension they're not expecting
-load(File.dirname(Dir.pwd) + '/lab6_files.cgi')
+load(File.expand_path('./generate.rb', PROJECT_ROOT))
 
 
 describe "Generate" do

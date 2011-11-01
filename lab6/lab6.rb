@@ -1,3 +1,196 @@
+# # # lab6_exceptions.cgi # # #
+#!/usr/bin/env ruby
+
+# Use Exceptions to handle errors in a script named lab6_exceptions.cgi
+# Write a CGI script that creates and catches the following exceptions, printing the exceptions messages contained in the exception:
+  # ArgumentError
+  # IndexError
+  # NameError
+  # NoMethodError
+  # ZeroDivisionError
+
+puts "Content-type: text/html"
+puts
+
+@exceptions=[]
+
+def attempt(&block)
+  begin
+    block.call
+  rescue Exception => e
+    @exceptions<<e
+  end
+end
+
+begin # re-ordered to match that of output sample
+  attempt {Foo}              # NameError
+  attempt {[].shift 1, 2}    # ArgumentError
+  attempt {"Foo".carina}     # NoMethodError
+  attempt {[].fetch 42}      # IndexError
+  attempt {4/0}              # ZeroDivisionError
+rescue Exception => e
+  puts "Unable to attempt all operations!"
+  puts (e.class.to_s + ': ' + e.message)
+  puts e.backtrace
+  exit
+end
+
+
+begin
+  require 'erb'
+  html=%Q{
+    <html>
+    <!-- Example output: http://hills.ccsf.edu/~dputnam/lab6_exceptions.cgi-->
+      <head>
+        <title>Lab6 - Carina Zona</title>
+        <style>
+          /* adapted from sample */
+        body
+        {
+          margin: 1em auto;
+          padding: 2em;
+          font-size: 1em;
+        }
+
+        .caught
+        {
+          background-color: #cef;
+          padding: 1em;
+          border:solid 1px #ddd;
+          padding: 2em 1em 1em 1em;
+          margin-top: 2em;
+          border-top; gray;
+        }
+
+        .backtrace
+        {
+          background-color: khaki;
+          padding: 2em;
+          font-family:monospace;
+        }
+        </style>
+
+      </head>
+
+      <body>
+
+        <h1>Lab6 - Exceptions - Carina Zona</h1>
+
+        <% @exceptions.each do |e| %>
+
+        <div class="caught">
+          <h2><%= e.class%></h2>
+          <p><%= e.message%></p>
+          <div class="backtrace">
+            <p>Stacktrace:</p>
+            <% e.backtrace.each do |line| %>
+            <p><%= line %></p>
+            <% end %>
+          </div>
+        </div>
+
+        <% end %>
+
+      </body>
+    </html>
+  }
+
+  puts ERB.new(html).result
+rescue Exception => e
+  p "Unable to produce output"
+  p e.message
+  p e.backtrace
+end
+
+
+# # # lab6_files.cgi # # #
+#!/usr/bin/env ruby
+
+puts "Content-type: text/html\n\n"
+
+begin
+
+  class Lab6Files
+
+    def initialize
+      @content=[]
+      if Lab6Files.is_production? # FIX ME: unsandbox these!
+        # @path=File.expand_path('/tmp/czona')
+        @path= File.expand_path('/students/czona/public_html/cgi-bin/')
+      else
+        # @path=File.expand_path('/tmp/lab6')
+        @path= File.expand_path(File.dirname(__FILE__))
+      end
+    end
+
+    def self.is_production?
+      #  another candidate: ENV['SERVER_SIGNATURE'].match(%r{hills.ccsf.cc.ca.us})
+      ( ENV["HTTP_HOST"]=="hills.ccsf.edu" || ENV["SERVER_ADDR"]=='147.144.1.2' || ENV['USER'] == 'czona' )
+    end
+
+    def path
+      @path
+    end
+
+    def content
+      Dir.glob('./**/**')
+    end
+
+    def output
+      markup = <<-OUT
+        <html>
+        <head>
+        <link rel="stylesheet" type="text/css" href="/~dputnam/stylesheets/132a.css" />
+        <link rel="stylesheet" type="text/css" href="http://douglasputnam.com/css/html5.css" />
+        <style type="text/css">
+        .content {
+          width: 800px;
+          margin: 0 auto;
+          font-family:Arial,Helvetica,monospace;
+        }
+        hr { margin-top: 2em;border-top; gray;height: 1px;}
+        .backtrace {
+          background-color: khaki;
+          padding: 2em;
+          font-family:monospace;
+        }
+        body,p {
+          font-family: Lucida Grande, Arial, Verdana, sans-serif;
+        }
+        </style>
+        </head>
+        <body>
+        <div id="banner">
+        Carina Zona -- CS 132A -- Lab 6</div>
+        <div class="content">
+        <h1><code>lab6_files.cgi</code> Example</h1>
+        <pre>
+        <h3>Contents of <code>#{File.basename(@path)}</code></h3>
+        OUT
+
+        content.each do |line|
+          markup << ('        ')
+          markup << line + "\n"
+        end
+
+        markup << <<-HTML
+        </pre>
+        </div>
+      </body>
+      </html>
+    HTML
+  end
+end
+
+  puts Lab6Files.new.output
+
+rescue => e
+  puts e.message
+  puts e.backtrace
+end
+
+
+# # # generate.rb # # #
 #!/usr/bin/env ruby
 
 require 'fileutils'
@@ -59,7 +252,6 @@ class Generate
   end
 
   def valid_input?
-    # FIXME: check for STDIN.tty? instead
     unless ARGV.class == Array        ; raise Exception, MESSAGE + "That's weird.  ARGV isn't an array for some reason.";end
     if (ARGV.length < 1)              ; raise ArgumentError, MESSAGE + "Must provide one argument. #{ARGV} is too short";end
     if (ARGV.length > 1)              ; raise ArgumentError, MESSAGE + "Just one argument, please.  #{ARGV} is too long";end

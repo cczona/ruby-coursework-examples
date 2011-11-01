@@ -2,8 +2,8 @@
 ### Optional: MiniTest options can be passed in as arguments to filename, e.g. $ ruby thisfile -- -v
 ### To see all MiniTest options, use $ ruby -r minitest/autorun -e '' -- --help
 
-#coverage must be before anything else!
 begin
+  # coverage must be before anything else!
   require 'simplecov'
   SimpleCov.start
   SimpleCov.at_exit do
@@ -21,10 +21,13 @@ begin
       # MiniTest::Unit.runner.reporters << MiniTest::Reporters::SpecReporter.new # => Turn-like
     end
   gem 'minitest', '> 1.4.2' # load after require of stdlib minitest
+  require 'metric_fu'
 rescue LoadError => e
   puts e
 end
 
+PROJECT_ROOT=File.expand_path('../', File.dirname(__FILE__))
+$:<< PROJECT_ROOT# load path
 
 describe 'meta' do
 
