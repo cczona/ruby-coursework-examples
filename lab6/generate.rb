@@ -128,7 +128,7 @@ class Generate
 
 end
 
-# p Generate.new.parse_manifest
+# p Generate.new.script_directory
 Generate.new.generate_from_data
 
 __END__
