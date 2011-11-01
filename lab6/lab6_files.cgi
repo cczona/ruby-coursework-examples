@@ -57,7 +57,7 @@ begin
         <div class="content">
         <h1><code>lab6_files.cgi</code> Example</h1>
         <pre>
-        <h3>Contents of <code>cgi-bin</code></h3>
+        <h3>Contents of <code>#{File.basename(@path)}</code></h3>
         OUT
 
         content.each do |line|
