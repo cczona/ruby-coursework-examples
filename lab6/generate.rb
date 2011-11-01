@@ -174,7 +174,7 @@ module CGI_Helper
       <title>Success!</title>
     </head>
     <body>
-    <p>Congratulation.  Your application has been generated successfully.</p>
+    <p>Congratulations.  Your application has been generated successfully.</p>
     </body>
     </html>
     HTML
