@@ -187,9 +187,9 @@ end
 $:.unshift('.')
 require_relative './lib/cgi_helper'
 include CGI_Helper
-p http_header
+puts http_header
 #### BEGIN EDITING BELOW HERE ####
-p html_starter
+puts html_starter
 
 
 ## FILE: script/generate.rb
