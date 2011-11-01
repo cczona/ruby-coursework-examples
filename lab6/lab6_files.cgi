@@ -25,7 +25,7 @@ begin
     end
 
     def content
-      Dir.entries path
+      Dir.glob('./**/**')
     end
 
     def output
