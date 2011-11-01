@@ -36,7 +36,7 @@ describe "Generate" do
     ARGV.unshift "foo"
     @tested.app_name.must_equal 'foo'
     @tested.app_name.must_equal ARGV[0]
-    File.basename(@tested.new_app_directory).must_equal @tested.app_name
+    File.basename(@tested.new_app_path).must_equal @tested.app_name
   end
 
   # it 'creates a directory structure populated with directories and files' do
@@ -70,7 +70,22 @@ describe "Generate" do
     # FIXME: does not really test for the app structure
     @tested.data.must_be_instance_of String
     @tested.data.size.must_be :>, 1
-    @tested.data.split("\n").size.must_equal 27
+    @tested.data.split("\n").size.must_be :>, 27
+  end
+
+  it 'parses the data object into a manifest of files and directories to be generated' do
+    collection=@tested.parse_manifest
+
+    collection['dir_names'].must_be_kind_of Array
+    collection['dir_names'].size.must_be :==, 20
+
+    collection['file_names'].must_be_kind_of Hash
+    collection['file_names'].size.must_be :==, 4
+  end
+
+  it 'sets correct paths and permissions for new directories' do
+    ARGV.unshift 'foo'
+    @tested.generate_from_data
   end
 
 end
@@ -100,6 +115,75 @@ describe "Generate accepts one valid argument via ARGV" do
   it 'passes validation when ARGV has a single string value' do
     ARGV << 'a'
     Generate.new.valid_input?.must_equal true
+  end
+
+end
+
+
+describe 'the generated application' do
+
+  # require 'fileutils'
+
+  before do
+    ARGV.clear
+    ARGV.unshift 'bar'
+    @tested=Generate.new
+    # FileUtils.rm_rf(@tested.new_app_path)
+    @tested.generate_from_data
+  end
+
+  it 'has several sub-directories, some of which have files' do
+    ls_before=Dir.entries(@tested.new_app_path)
+    ls_after=ls_before.reject {|e| e=='..' || e=='.'}
+    ls_after.size.must_equal ls_before.size - 2
+    ls_after.size.must_be :>, 1
+
+    # ls_after.each do |basename|
+    #   f=File.expand_path(basename, @tested.new_app_path)
+    #   begin; p perms=File.stat(basename).mode; rescue Exception => e; p basename; p f; p e.message; p e. backtrace; end
+    #   if File.directory?(f)
+    #     perms.must_match Generate::DIR_PERMS
+    #   elsif (File.executable?(f) || File.file?(f)) && (File.extname(basename) == '.rb' || File.extname(basename) == '.cgi')
+    #     perms.must_match Generate::SCRIPT_PERMS
+    #   else
+    #     begin
+    #       perms.must_equal Generate::PLAIN_FILE_PERMS
+    #     rescue Exception => e
+    #       p e.message
+    #       p "PERMS are for #{basename}"
+    #     end
+    #   end #if
+    # end # each
+  end # it
+
+  it 'contains a working index.cgi ' do
+    path=File.expand_path('index.cgi', @tested.new_app_path)
+    File.exists?(path)
+    p f=File.new(path)
+    # p f.pos=0
+    # # f.stat.mode_received.must_equal SCRIPT_PERMS
+    # p f.gets#.must_equal "#!/usr/bin/env ruby\n" # "with a valid shebang line"
+    # p f.gets#.must_equal "Content-type: text/html\n" # "valid Content-type"
+    # p f.gets#.must_equal "\n"
+    # p f.gets#.must_equal "require 'cgi_helper'" # "requires cgi_helper.rb"
+    # puts `ruby f`
+  end
+
+  it 'has content in the README file' do
+    skip
+  end
+
+end
+
+
+describe 'the generated index.cgi' do
+
+  it 'modifies the include path so application subdirectories can be required without pathname' do
+    skip
+  end
+
+  it 'uses CGI_Helper methods in index.cgi' do
+    skip
   end
 
 end
