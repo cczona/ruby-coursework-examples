@@ -9,9 +9,11 @@ begin
     def initialize
       @content=[]
       if Lab6Files.is_production? # FIX ME: unsandbox these!
-        @path=File.expand_path('/tmp/czona')
+        # @path=File.expand_path('/tmp/czona')
+        @path= File.expand_path('~/public_html/cgi-bin/')
       else
-        @path=File.expand_path('/tmp/lab6')
+        # @path=File.expand_path('/tmp/lab6')
+        @path= File.expand_path(File.dirname(__FILE__))
       end
     end
 

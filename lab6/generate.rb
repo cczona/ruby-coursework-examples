@@ -50,10 +50,11 @@ class Generate
 
   def script_directory
     if is_production? #FIXME: unsandbox these!
-      File.expand_path('/tmp/czona/')
+      # File.expand_path('/tmp/czona/')
+      File.expand_path('~/public_html/cgi-bin/')
     else
       # File.expand_path('/tmp/lab6/')
-      File.expand_path('.', File.dirname(__FILE__))
+      File.expand_path(File.dirname(__FILE__))
     end
   end
 
